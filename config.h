@@ -1,13 +1,13 @@
 /*******************************/
 /****CONFIGURABLE PARAMETERS****/
 /*******************************/
-
+#define rcDelayValue 8
 /* Set the minimum throttle command sent to the ESC (Electronic Speed Controller)
    This is the minimum value that allow motors to run at a idle speed  */
 //#define MINTHROTTLE 1300 // for Turnigy Plush ESCs 10A
-//#define MINTHROTTLE 1120 // for Super Simple ESCs 10A
+#define MINTHROTTLE 1120 // for Super Simple ESCs 10A
 //#define MINTHROTTLE 1220
-#define MINTHROTTLE 1150 
+//#define MINTHROTTLE 1150 
 
 /* The type of multicopter */
 //#define GIMBAL
@@ -30,8 +30,8 @@
 #define I2C_SPEED 100000L     //100kHz normal mode, this value must be used for a genuine WMP
 //#define I2C_SPEED 400000L   //400kHz fast mode, it works only with some WMP clones
 
-#define PROMINI  //Arduino type
-//#define MEGA
+//#define PROMINI  //Arduino type
+#define MEGA
 
 //enable internal I2C pull ups
 #define INTERNAL_I2C_PULLUPS
@@ -60,7 +60,7 @@
 /* The following lines apply only for a pitch/roll tilt stabilization system
    On promini board, it is not compatible with config with 6 motors or more
    Uncomment the first line to activate it */
-//#define SERVO_TILT
+#define SERVO_TILT
 #define TILT_PITCH_MIN    1020    //servo travel min, don't set it below 1020
 #define TILT_PITCH_MAX    2000    //servo travel max, max value=2000
 #define TILT_PITCH_MIDDLE 1500    //servo neutral value
@@ -101,12 +101,12 @@
 //#define LIS3LV02
 
 /* I2C barometer */
-//#define BMP085
+#define BMP085
 //#define MS561101BA  //non tested
 
 /* I2C magnetometer */
 //#define HMC5843
-//#define HMC5883
+#define HMC5883
 //#define AK8975
 
 /* ADC accelerometer */ // for 5DOF from sparkfun, uses analog PIN A1/A2/A3
@@ -130,7 +130,7 @@
 /* interleaving delay in micro seconds between 2 readings WMP/NK in a WMP+NK config
    if the ACC calibration time is very long (20 or 30s), try to increase this delay up to 4000
    it is relevent only for a conf with NK */
-#define INTERLEAVING_DELAY 3000
+#define INTERLEAVING_DELAY 3050
 
 /* for V BAT monitoring
    after the resistor divisor we should get [0V;5V]->[0;1023] on analog V_BATPIN
@@ -141,6 +141,28 @@
 #define VBATLEVEL1_3S 107 // 10,7V
 #define VBATLEVEL2_3S 103 // 10,3V
 #define VBATLEVEL3_3S 99  // 9.9V
+
+// added JDH
+//*****************************************************************************************
+
+#define BATTERY_MONITOR_SCALE_FACTOR 0.012662116040955631399317406143345//0.012505010020 //+ use "p" to get batRaw a>d value then measure battery with DVM and do DVM/batRaw to get scale factor
+#define BAT_GOOD 10.8
+#define BAT_WARNING 10.4
+#define BAT_CRITICAL 10.1
+int batRaw;
+float batVoltage;
+//String batString;
+int rfdetect;
+bool rf;
+
+int8_t softTrimROLL = 0;  // this allows the soft trims to be saved to EEPROM
+int8_t softTrimPITCH = 0;
+// added JDH
+
+#define WIRELESS_TELEMETRY_J_PIN 40
+//*****************************************************************************************
+// added JDH
+
 
 /* when there is an error on I2C bus, we neutralize the values during a short time. expressed in microseconds
    it is relevent only for a conf with at least a WMP */
@@ -159,7 +181,7 @@
 
 /* In order to save space, it's possibile to desactivate the LCD configuration functions
    comment this line only if you don't plan to used a LCD */
-#define LCD_CONF
+//#define LCD_CONF
 
 /* to use Cat's whisker TEXTSTAR LCD, uncomment following line.
    Pleae note this display needs a full 4 wire connection to (+5V, Gnd, RXD, TXD )

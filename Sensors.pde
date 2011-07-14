@@ -3,13 +3,13 @@
 // ************************************************************************************************************
 //default board orientation
 #if !defined(ACC_ORIENTATION) 
-  #define ACC_ORIENTATION(X, Y, Z)  {accADC[ROLL]  = X; accADC[PITCH]  = Y; accADC[YAW]  = Z;}
+  #define ACC_ORIENTATION(X, Y, Z)  {accADC[ROLL]  = Y; accADC[PITCH]  = -X; accADC[YAW]  = Z;}
 #endif
 #if !defined(GYRO_ORIENTATION) 
-  #define GYRO_ORIENTATION(X, Y, Z) {gyroADC[ROLL] = X; gyroADC[PITCH] = Y; gyroADC[YAW] = Z;}
+  #define GYRO_ORIENTATION(X, Y, Z) {gyroADC[ROLL] = Y ; gyroADC[PITCH] = -X; gyroADC[YAW] = Z;}
 #endif
 #if !defined(MAG_ORIENTATION) 
-  #define MAG_ORIENTATION(X, Y, Z)  {magADC[ROLL]  = X; magADC[PITCH]  = Y; magADC[YAW]  = Z;}
+  #define MAG_ORIENTATION(X, Y, Z)  {magADC[ROLL]  = -Y; magADC[PITCH]  = X; magADC[YAW]  = Z;}
 #endif
 
 /*** I2C address ***/
@@ -845,9 +845,12 @@ uint8_t WMP_getRawADC() {
                       - ( ((rawADC[4]>>2)<<8) + rawADC[1] ) ,
                       - ( ((rawADC[3]>>2)<<8) + rawADC[0] ) );
     GYRO_Common();
-    GYRO_ORIENTATION(   (rawADC[3]&0x01)     ? gyroADC[ROLL]/5  : gyroADC[ROLL] ,   //the ratio 1/5 is not exactly the IDG600 or ISZ650 specification 
+/*    GYRO_ORIENTATION(   (rawADC[3]&0x01)     ? gyroADC[ROLL]/5  : gyroADC[ROLL] ,   //the ratio 1/5 is not exactly the IDG600 or ISZ650 specification 
                         (rawADC[4]&0x02)>>1  ? gyroADC[PITCH]/5 : gyroADC[PITCH] ,  //we detect here the slow of fast mode WMP gyros values (see wiibrew for more details)
-                        (rawADC[3]&0x02)>>1  ? gyroADC[YAW]/5   : gyroADC[YAW]   ); // this step must be done after zero compensation    
+                        (rawADC[3]&0x02)>>1  ? gyroADC[YAW]/5   : gyroADC[YAW]   ); // this step must be done after zero compensation  */
+                        gyroADC[ROLL] = (rawADC[3]&0x01)     ? gyroADC[ROLL]/5  : gyroADC[ROLL]; 
+                        gyroADC[PITCH] = (rawADC[4]&0x02)>>1  ? gyroADC[PITCH]/5 : gyroADC[PITCH]; 
+                        gyroADC[YAW] = (rawADC[3]&0x02)>>1  ? gyroADC[YAW]/5   : gyroADC[YAW];                       
     return 1;
   } else if ( (rawADC[5]&0x02) == 0 && (rawADC[5]&0x01) == 0) { //nunchuk data
     ACC_ORIENTATION(  ( (rawADC[3]<<2)        + ((rawADC[5]>>4)&0x2) ) ,
