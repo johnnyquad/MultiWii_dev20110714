@@ -213,12 +213,12 @@
   #define DIGITAL_CAM_HIGH           PORTC |= 1<<4;
   #define DIGITAL_CAM_LOW            PORTC &= ~(1<<4);
   //RX PIN assignment inside the port //for PORTK
-  #define THROTTLEPIN                3  //PIN 65 =  PIN A11
-  #define ROLLPIN                    5  //PIN 67 =  PIN A13
-  #define PITCHPIN                   4  //PIN 66 =  PIN A12
-  #define YAWPIN                     2  //PIN 64 =  PIN A10
-  #define AUX1PIN                    1  //PIN 63 =  PIN A9
-  #define AUX2PIN                    0  //PIN 62 =  PIN A8
+  #define THROTTLEPIN                0  //PIN 62 =  PIN A8
+  #define ROLLPIN                    1  //PIN 63 =  PIN A9
+  #define PITCHPIN                   2  //PIN 64 =  PIN A10
+  #define YAWPIN                     3  //PIN 65 =  PIN A11
+  #define AUX1PIN                    4  //PIN 66 =  PIN A12
+  #define AUX2PIN                    5  //PIN 67 =  PIN A13
   #define CAM1PIN                    6  //PIN 68 =  PIN A14
   #define CAM2PIN                    7  //PIN 69 =  PIN A15
   #define ISR_UART                   ISR(USART0_UDRE_vect)
