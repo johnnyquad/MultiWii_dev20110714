@@ -1,16 +1,17 @@
 /*
+JDH Mods 2011-07-14
 MultiWiiCopter by Alexandre Dubus
 www.multiwii.com
 June  2011     V1.dev
-Modded JDH July 14
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
  any later version. see <http://www.gnu.org/licenses/>
 */
-
+#include "WProgram.h"
 #include "config.h"
 #include "def.h"
+#include "LEDs.h"
 #define   VERSION  18
 
 /*********** RC alias *****************/
