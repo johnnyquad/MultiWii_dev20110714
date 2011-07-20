@@ -101,7 +101,7 @@ void LCDprint(uint8_t i) {
 }
 
 void LCDprintChar(const char *s) {
-  while (*s) LCDprint(*s++);
+  while (*s) LCDprint(*s++);+
 }
 
 void initLCD() {
