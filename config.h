@@ -181,13 +181,13 @@ int8_t softTrimPITCH = 0;
 
 /* In order to save space, it's possibile to desactivate the LCD configuration functions
    comment this line only if you don't plan to used a LCD */
-//#define LCD_CONF
+#define LCD_CONF
 
 /* to use Cat's whisker TEXTSTAR LCD, uncomment following line.
    Pleae note this display needs a full 4 wire connection to (+5V, Gnd, RXD, TXD )
    Configure display as follows: 115K baud, and TTL levels for RXD and TXD, terminal mode
    NO rx / tx line reconfiguration, use natural pins */
-//#define LCD_TEXTSTAR
+#define LCD_TEXTSTAR
 /* keys to navigate the LCD menu (preset to TEXTSTAR key-depress codes)*/
 #define LCD_MENU_PREV 'a'
 #define LCD_MENU_NEXT 'c'
