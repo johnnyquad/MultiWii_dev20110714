@@ -265,7 +265,7 @@ int8_t softTrimPITCH = 0;
 /* The active page on the LCD does get updated automatically */
 /* Easy to use with Terminal application or Textstar LCD - the 4 buttons are preconfigured to send 'A', 'B', 'C', 'D' */
 /* The value represents the refresh interval in cpu time (micro seconds) */
-//#define LCD_TELEMETRY 100011
+#define LCD_TELEMETRY 100011
 /* to enable automatic hopping between 4 telemetry pages uncomment this. */
 /* This may be useful if your LCD has no buttons or the sending is broken */
 /* hopping is activated and deactivated in unarmed mode with throttle=low & roll=left & pitch=forward */
